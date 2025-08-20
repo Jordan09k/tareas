@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+h3 {
+    color: #555;
+    font-size: 1.5rem;
+    margin: 30px 0 15px 0;
+    text-align: center;
+}
+
+/* Container principal */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Área de entrada de tareas */
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+#taskInput {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#taskInput:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+#taskInput::placeholder {
+    color: #999;
+}
+
+button {
+    padding: 12px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+button:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Lista de tareas */
+#taskList {
+    list-style: none;
+    padding: 0;
+}
+
+#taskList li {
+    background: #f8f9fa;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#taskList li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#taskList li.completed {
+    opacity: 0.7;
+    border-left-color: #28a745;
+}
+
+.task-text {
+    flex: 1;
+    font-size: 1rem;
+    margin-right: 15px;
+}
+
+.task-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.mark-completed {
+    background: #28a745;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+.mark-completed:hover {
+    background: #218838;
+}
+
+.mark-completed.unmark {
+    background: #ffc107;
+}
+
+.mark-completed.unmark:hover {
+    background: #e0a800;
+}
+
+button:last-child {
+    background: #dc3545;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+button:last-child:hover {
+    background: #c82333;
+}
+
+/* Mensaje de error */
+#Error {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    display: none;
+}
+
+#Error:not(:empty) {
+    display: block;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#taskList li {
+    animation: slideIn 0.3s ease;
+}
+
+/* Estados de tareas completadas */
+.completed .task-text {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .input-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #taskInput {
+        margin-bottom: 10px;
+    }
+    
+    #taskList li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .task-buttons {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+/* Estado vacío */
+.empty-state {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    margin: 40px 0;
+    padding: 20px;
+}
+
+.empty-state::before {
+    content: "📝";
+    display: block;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
