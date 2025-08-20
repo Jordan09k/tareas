@@ -287,7 +287,7 @@ h3 {
     padding: 20px 25px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     position: relative;
     transition: all 0.4s ease;
     font-family: 'Rajdhani', monospace;
@@ -296,6 +296,8 @@ h3 {
     animation: taskMaterialize 0.6s ease;
     font-size: 1.1rem;
     font-weight: 500;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 /* Indicador lateral animado */
@@ -303,6 +305,7 @@ h3 {
     content: '>';
     position: absolute;
     left: 5px;
+    top: 22px;
     color: var(--neon-green);
     font-weight: bold;
     animation: prompt 2s ease-in-out infinite;
@@ -328,7 +331,12 @@ h3 {
     opacity: 1;
 }
 
-/* Tareas completadas */
+/* Texto de la tarea */
+#taskList li {
+    padding-left: 35px;
+}
+
+/* Tareas completadas - detectar por text-decoration */
 #taskList li[style*="line-through"] {
     border-color: var(--terminal-green) !important;
     color: var(--terminal-green) !important;
@@ -341,12 +349,11 @@ h3 {
     animation: none !important;
 }
 
-/* Botones de acción */
-.mark-completed {
+/* Botones de acción - adaptados al JS original */
+#taskList button {
     padding: 8px 16px;
-    border: 1px solid var(--neon-green);
+    border: 1px solid;
     background: var(--dark-bg);
-    color: var(--neon-green);
     font-family: 'Orbitron', monospace;
     font-size: 0.8rem;
     font-weight: 500;
@@ -354,7 +361,15 @@ h3 {
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-right: 10px;
+    margin-left: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Botón marcar/desmarcar */
+.mark-completed {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
 }
 
 .mark-completed:hover {
@@ -363,22 +378,25 @@ h3 {
     box-shadow: 0 0 15px var(--neon-green);
 }
 
-/* Botón eliminar */
-#taskList button:last-child {
-    padding: 8px 16px;
-    border: 1px solid var(--warning-red);
-    background: var(--dark-bg);
-    color: var(--warning-red);
-    font-family: 'Orbitron', monospace;
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+/* Para tareas completadas, cambiar estilo del botón "Desmarcar" */
+#taskList li[style*="line-through"] .mark-completed {
+    border-color: var(--neon-orange);
+    color: var(--neon-orange);
 }
 
-#taskList button:last-child:hover {
+#taskList li[style*="line-through"] .mark-completed:hover {
+    background: var(--neon-orange);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px var(--neon-orange);
+}
+
+/* Botón eliminar - aplica a todos los botones que no son mark-completed */
+#taskList button:not(.mark-completed) {
+    border-color: var(--warning-red);
+    color: var(--warning-red);
+}
+
+#taskList button:not(.mark-completed):hover {
     background: var(--warning-red);
     color: var(--dark-bg);
     box-shadow: 0 0 15px var(--warning-red);
@@ -412,6 +430,11 @@ button[onclick="addTask()"]:active {
     letter-spacing: 2px;
     position: relative;
     animation: errorAlert 0.5s ease;
+    display: none;
+}
+
+#Error:not(:empty) {
+    display: block;
 }
 
 #Error::before {
@@ -494,17 +517,16 @@ button[onclick="addTask()"]:active {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
-        padding: 18px 20px;
+        padding: 18px 20px 18px 35px;
     }
     
     #taskList li::before {
         top: 20px;
     }
     
-    .mark-completed,
-    #taskList button:last-child {
-        margin-right: 0;
-        margin-top: 10px;
+    #taskList button {
+        margin-left: 0;
+        margin-top: 5px;
         min-width: 120px;
     }
 }
@@ -529,10 +551,11 @@ button[onclick="addTask()"]:active {
         padding: 15px 18px;
     }
     
-    .mark-completed,
-    #taskList button:last-child {
+    #taskList button {
         padding: 6px 12px;
         font-size: 0.7rem;
         min-width: 100px;
+        margin-left: 0;
+        margin-top: 5px;
     }
 }
