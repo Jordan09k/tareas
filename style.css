@@ -33,6 +33,8 @@ body {
     overflow-x: hidden;
     position: relative;
     animation: gridPulse 4s ease-in-out infinite;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 @keyframes gridPulse {
@@ -63,7 +65,7 @@ body::before {
     100% { transform: translate(100%, 100%); }
 }
 
-/* Título con efecto holográfico */
+/* Título principal con efecto holográfico */
 h2 {
     text-align: center;
     font-family: 'Orbitron', monospace;
@@ -83,7 +85,7 @@ h2 {
 }
 
 h2::before {
-    content: attr(data-text);
+    content: 'Lista de tareas';
     position: absolute;
     top: 0;
     left: 0;
@@ -100,7 +102,7 @@ h2::after {
     bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px;
+    width: 300px;
     height: 2px;
     background: linear-gradient(90deg, 
         transparent, 
@@ -143,79 +145,9 @@ h2::after {
     100% { transform: translateX(-50%) scaleX(0); }
 }
 
-/* Container con bordes neón */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: rgba(10, 10, 10, 0.8);
-    border: 2px solid var(--neon-cyan);
-    border-radius: 0;
-    padding: 40px;
-    position: relative;
-    backdrop-filter: blur(5px);
-    box-shadow: 
-        0 0 20px var(--neon-cyan),
-        inset 0 0 20px rgba(0, 255, 255, 0.1);
-}
-
-.container::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, 
-        var(--neon-pink), 
-        var(--neon-cyan), 
-        var(--neon-green), 
-        var(--neon-purple));
-    z-index: -1;
-    animation: borderGlow 3s linear infinite;
-}
-
-@keyframes borderGlow {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
-}
-
-/* Esquinas decorativas */
-.container::after {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    border: 1px solid var(--neon-green);
-    pointer-events: none;
-    opacity: 0.3;
-}
-
-h3 {
-    color: var(--neon-green);
-    font-family: 'Orbitron', monospace;
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 40px 0 20px 0;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    text-shadow: 
-        0 0 5px var(--neon-green),
-        0 0 10px var(--neon-green);
-}
-
-/* Input futurista con efectos de terminal */
-.input-section {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 50px;
-    position: relative;
-}
-
+/* Sección de input futurista */
 #taskInput {
-    flex: 1;
+    width: calc(100% - 200px);
     padding: 20px 25px;
     background: var(--dark-bg);
     border: 2px solid var(--terminal-green);
@@ -227,7 +159,8 @@ h3 {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 2px;
-    position: relative;
+    margin-right: 20px;
+    margin-bottom: 30px;
 }
 
 #taskInput::placeholder {
@@ -245,22 +178,8 @@ h3 {
     text-shadow: 0 0 5px var(--neon-cyan);
 }
 
-/* Efecto de typing cursor */
-#taskInput:focus::after {
-    content: '|';
-    color: var(--neon-cyan);
-    animation: blink 1s infinite;
-    position: absolute;
-    right: 10px;
-}
-
-@keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-}
-
-/* Botón add futurista */
-.add-btn {
+/* Botón principal - Agregar tarea */
+button[onclick="addTask()"] {
     padding: 20px 35px;
     background: var(--dark-bg);
     border: 2px solid var(--neon-pink);
@@ -274,9 +193,11 @@ h3 {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    margin-bottom: 30px;
 }
 
-.add-btn::before {
+button[onclick="addTask()"]::before {
     content: '';
     position: absolute;
     top: 0;
@@ -285,27 +206,70 @@ h3 {
     height: 100%;
     background: linear-gradient(90deg, 
         transparent, 
-        rgba(255, 0, 128, 0.2), 
+        rgba(255, 0, 128, 0.4), 
+        rgba(0, 255, 255, 0.4),
         transparent);
-    transition: left 0.5s;
+    transition: left 0.6s ease;
+    animation: standbyGlow 3s ease-in-out infinite;
 }
 
-.add-btn:hover {
+button[onclick="addTask()"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--neon-cyan), 
+        transparent);
+    transform: translateY(-50%);
+    opacity: 0.6;
+}
+
+@keyframes standbyGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+button[onclick="addTask()"]:hover {
     color: var(--dark-bg);
-    background: var(--neon-pink);
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
+    border-color: var(--neon-cyan);
     box-shadow: 
         0 0 20px var(--neon-pink),
-        0 0 40px var(--neon-pink),
-        0 0 80px var(--neon-pink);
+        0 0 40px var(--neon-cyan),
+        0 0 80px var(--neon-pink),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
     text-shadow: none;
+    transform: translateY(-2px);
 }
 
-.add-btn:hover::before {
+button[onclick="addTask()"]:hover::before {
     left: 100%;
 }
 
-.add-btn:active {
-    transform: scale(0.95);
+button[onclick="addTask()"]:hover::after {
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.8), 
+        transparent);
+}
+
+/* Subtítulo */
+h3 {
+    color: var(--neon-green);
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 40px 0 30px 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 
+        0 0 5px var(--neon-green),
+        0 0 10px var(--neon-green);
 }
 
 /* Lista de tareas estilo terminal */
@@ -329,6 +293,9 @@ h3 {
     font-family: 'Rajdhani', monospace;
     text-transform: uppercase;
     letter-spacing: 1px;
+    animation: taskMaterialize 0.6s ease;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 /* Indicador lateral animado */
@@ -361,42 +328,25 @@ h3 {
     opacity: 1;
 }
 
-.task-text {
-    flex: 1;
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-left: 30px;
-    margin-right: 20px;
-    color: inherit;
-}
-
-/* Estados de tareas completadas */
-.completed {
+/* Tareas completadas */
+#taskList li[style*="line-through"] {
     border-color: var(--terminal-green) !important;
     color: var(--terminal-green) !important;
     opacity: 0.7;
 }
 
-.completed .task-text {
-    text-decoration: line-through;
-    color: var(--terminal-green);
-}
-
-.completed::before {
+#taskList li[style*="line-through"]::before {
     content: '✓' !important;
     color: var(--terminal-green) !important;
+    animation: none !important;
 }
 
-/* Botones de acción cyberpunk */
-.task-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.task-btn {
+/* Botones de acción */
+.mark-completed {
     padding: 8px 16px;
-    border: 1px solid;
+    border: 1px solid var(--neon-green);
     background: var(--dark-bg);
+    color: var(--neon-green);
     font-family: 'Orbitron', monospace;
     font-size: 0.8rem;
     font-weight: 500;
@@ -404,45 +354,39 @@ h3 {
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    margin-right: 10px;
 }
 
-.mark-btn {
-    border-color: var(--neon-green);
-    color: var(--neon-green);
-}
-
-.mark-btn:hover {
+.mark-completed:hover {
     background: var(--neon-green);
     color: var(--dark-bg);
     box-shadow: 0 0 15px var(--neon-green);
 }
 
-.mark-btn.unmark {
-    border-color: var(--neon-orange);
-    color: var(--neon-orange);
-}
-
-.mark-btn.unmark:hover {
-    background: var(--neon-orange);
-    color: var(--dark-bg);
-    box-shadow: 0 0 15px var(--neon-orange);
-}
-
-.delete-btn {
-    border-color: var(--warning-red);
+/* Botón eliminar */
+#taskList button:last-child {
+    padding: 8px 16px;
+    border: 1px solid var(--warning-red);
+    background: var(--dark-bg);
     color: var(--warning-red);
+    font-family: 'Orbitron', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.delete-btn:hover {
+#taskList button:last-child:hover {
     background: var(--warning-red);
     color: var(--dark-bg);
     box-shadow: 0 0 15px var(--warning-red);
 }
 
 /* Efecto de glitch en botones */
-.task-btn:active {
+#taskList button:active,
+button[onclick="addTask()"]:active {
     animation: buttonGlitch 0.3s;
 }
 
@@ -455,7 +399,7 @@ h3 {
     100% { transform: translate(0); }
 }
 
-/* Mensajes de error estilo sistema */
+/* Mensajes de error */
 #Error {
     background: rgba(255, 7, 58, 0.1);
     border: 1px solid var(--warning-red);
@@ -466,12 +410,7 @@ h3 {
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    display: none;
     position: relative;
-}
-
-#Error:not(:empty) {
-    display: block;
     animation: errorAlert 0.5s ease;
 }
 
@@ -486,34 +425,6 @@ h3 {
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Estado vacío futurista */
-.empty-state {
-    text-align: center;
-    color: var(--neon-purple);
-    font-family: 'Orbitron', monospace;
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin: 60px 0;
-    padding: 40px;
-    border: 1px dashed var(--neon-purple);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-
-.empty-state::before {
-    content: '◊◊◊';
-    display: block;
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: var(--neon-purple);
-    animation: rotate 4s linear infinite;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
 /* Animación de entrada para tareas */
 @keyframes taskMaterialize {
     0% {
@@ -526,81 +437,6 @@ h3 {
         transform: translateY(0) scale(1);
         filter: blur(0);
     }
-}
-
-#taskList li {
-    animation: taskMaterialize 0.6s ease;
-}
-
-/* Responsive cyberpunk */
-@media (max-width: 768px) {
-    body {
-        padding: 15px;
-        background-size: 20px 20px;
-    }
-    
-    .container {
-        padding: 25px;
-    }
-    
-    h2 {
-        font-size: 2.5rem;
-        letter-spacing: 4px;
-        margin-bottom: 30px;
-    }
-    
-    .input-section {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    #taskInput, .add-btn {
-        padding: 18px 20px;
-        font-size: 1rem;
-    }
-    
-    #taskList li {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-        padding: 18px 20px;
-    }
-    
-    .task-text {
-        margin-left: 20px;
-        margin-right: 0;
-        margin-bottom: 10px;
-        width: 100%;
-    }
-    
-    .task-buttons {
-        width: 100%;
-        justify-content: flex-end;
-    }
-}
-
-@media (max-width: 480px) {
-    h2 {
-        font-size: 2rem;
-        letter-spacing: 2px;
-    }
-    
-    .task-buttons {
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    
-    .task-btn {
-        flex: 1;
-        min-width: 80px;
-    }
-}
-
-/* Efectos adicionales de ambiente */
-.container:hover {
-    box-shadow: 
-        0 0 30px var(--neon-cyan),
-        inset 0 0 30px rgba(0, 255, 255, 0.1);
 }
 
 /* Scrollbar personalizada */
@@ -620,4 +456,83 @@ h3 {
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, var(--neon-cyan), var(--neon-green));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+        background-size: 20px 20px;
+    }
+    
+    h2 {
+        font-size: 2.5rem;
+        letter-spacing: 4px;
+        margin-bottom: 30px;
+    }
+    
+    h2::after {
+        width: 200px;
+    }
+    
+    #taskInput {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+        padding: 18px 20px;
+        font-size: 1rem;
+    }
+    
+    button[onclick="addTask()"] {
+        width: 100%;
+        padding: 18px 20px;
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    #taskList li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 18px 20px;
+    }
+    
+    #taskList li::before {
+        top: 20px;
+    }
+    
+    .mark-completed,
+    #taskList button:last-child {
+        margin-right: 0;
+        margin-top: 10px;
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+    
+    h2::after {
+        width: 150px;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+    
+    #taskList li {
+        font-size: 1rem;
+        padding: 15px 18px;
+    }
+    
+    .mark-completed,
+    #taskList button:last-child {
+        padding: 6px 12px;
+        font-size: 0.7rem;
+        min-width: 100px;
+    }
 }
