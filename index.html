@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="style.css"> <!-- Enlazamos el archivo CSS -->
+</head>
+<body>
+    <h2>Lista de tareas</h2>
+
+    <input type="text" id="taskInput" placeholder="Ingresa otra tarea">
+    <button onclick="addTask()">Agregar tarea</button>
+    
+    <!-- Sección de tareas pendientes -->
+    <h3>Tareas pendientes</h3>
+    <ul id="taskList"></ul>
+
+    <!-- Mensajes de error (en caso de que no haya una tarea válida) -->
+    <div id="Error"></div>
+
+    <script src="script.js"></script> <!-- Enlazamos el archivo JS -->
+</body>
+</html>

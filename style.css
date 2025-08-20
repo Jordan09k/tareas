@@ -1,0 +1,647 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --neon-pink: #ff0080;
+    --neon-cyan: #00ffff;
+    --neon-green: #39ff14;
+    --neon-purple: #bf00ff;
+    --neon-orange: #ff6600;
+    --dark-bg: #0a0a0a;
+    --grid-color: #1a1a2e;
+    --terminal-green: #00ff41;
+    --warning-red: #ff073a;
+    --electric-blue: #0066ff;
+}
+
+/* Fondo animado con grid cyberpunk */
+body {
+    font-family: 'Rajdhani', monospace;
+    background: var(--dark-bg);
+    background-image: 
+        linear-gradient(rgba(26, 26, 46, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 26, 46, 0.3) 1px, transparent 1px);
+    background-size: 30px 30px;
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--neon-cyan);
+    overflow-x: hidden;
+    position: relative;
+    animation: gridPulse 4s ease-in-out infinite;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@keyframes gridPulse {
+    0%, 100% { background-size: 30px 30px; }
+    50% { background-size: 32px 32px; }
+}
+
+/* Líneas de energía de fondo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, transparent 0%, var(--neon-pink) 50%, transparent 100%),
+        linear-gradient(0deg, transparent 0%, var(--neon-cyan) 50%, transparent 100%);
+    background-size: 200px 1px, 1px 200px;
+    background-position: 0 20%, 30% 0;
+    opacity: 0.1;
+    animation: energyFlow 8s linear infinite;
+    z-index: -1;
+}
+
+@keyframes energyFlow {
+    0% { transform: translate(-100%, -100%); }
+    100% { transform: translate(100%, 100%); }
+}
+
+/* Título principal con efecto holográfico */
+h2 {
+    text-align: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 50px;
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    position: relative;
+    text-shadow: 
+        0 0 5px var(--neon-cyan),
+        0 0 10px var(--neon-cyan),
+        0 0 20px var(--neon-cyan),
+        0 0 40px var(--neon-cyan);
+    animation: neonFlicker 2s ease-in-out infinite alternate;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --neon-pink: #ff0080;
+    --neon-cyan: #00ffff;
+    --neon-green: #39ff14;
+    --neon-purple: #bf00ff;
+    --neon-orange: #ff6600;
+    --dark-bg: #0a0a0a;
+    --grid-color: #1a1a2e;
+    --terminal-green: #00ff41;
+    --warning-red: #ff073a;
+    --electric-blue: #0066ff;
+}
+
+/* Fondo animado con grid cyberpunk */
+body {
+    font-family: 'Rajdhani', monospace;
+    background: var(--dark-bg);
+    background-image: 
+        linear-gradient(rgba(26, 26, 46, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 26, 46, 0.3) 1px, transparent 1px);
+    background-size: 30px 30px;
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--neon-cyan);
+    overflow-x: hidden;
+    position: relative;
+    animation: gridPulse 4s ease-in-out infinite;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@keyframes gridPulse {
+    0%, 100% { background-size: 30px 30px; }
+    50% { background-size: 32px 32px; }
+}
+
+/* Líneas de energía de fondo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, transparent 0%, var(--neon-pink) 50%, transparent 100%),
+        linear-gradient(0deg, transparent 0%, var(--neon-cyan) 50%, transparent 100%);
+    background-size: 200px 1px, 1px 200px;
+    background-position: 0 20%, 30% 0;
+    opacity: 0.1;
+    animation: energyFlow 8s linear infinite;
+    z-index: -1;
+}
+
+@keyframes energyFlow {
+    0% { transform: translate(-100%, -100%); }
+    100% { transform: translate(100%, 100%); }
+}
+
+/* Título principal con efecto holográfico */
+h2 {
+    text-align: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 50px;
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    position: relative;
+    text-shadow: 
+        0 0 5px var(--neon-cyan),
+        0 0 10px var(--neon-cyan),
+        0 0 20px var(--neon-cyan),
+        0 0 40px var(--neon-cyan);
+    animation: neonFlicker 2s ease-in-out infinite alternate;
+}
+
+h2::before {
+    content: 'Lista de tareas';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--neon-pink);
+    z-index: -1;
+    animation: glitchShift 0.3s infinite;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--neon-pink), 
+        var(--neon-cyan), 
+        var(--neon-green), 
+        transparent);
+    animation: scanLine 3s linear infinite;
+}
+
+@keyframes neonFlicker {
+    0%, 100% { 
+        text-shadow: 
+            0 0 5px var(--neon-cyan),
+            0 0 10px var(--neon-cyan),
+            0 0 20px var(--neon-cyan),
+            0 0 40px var(--neon-cyan);
+    }
+    50% { 
+        text-shadow: 
+            0 0 2px var(--neon-cyan),
+            0 0 5px var(--neon-cyan),
+            0 0 8px var(--neon-cyan),
+            0 0 12px var(--neon-cyan);
+    }
+}
+
+@keyframes glitchShift {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes scanLine {
+    0% { transform: translateX(-50%) scaleX(0); }
+    50% { transform: translateX(-50%) scaleX(1); }
+    100% { transform: translateX(-50%) scaleX(0); }
+}
+
+/* Sección de input futurista */
+#taskInput {
+    width: calc(100% - 200px);
+    padding: 20px 25px;
+    background: var(--dark-bg);
+    border: 2px solid var(--terminal-green);
+    color: var(--terminal-green);
+    font-family: 'Rajdhani', monospace;
+    font-size: 1.2rem;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+#taskInput::placeholder {
+    color: rgba(0, 255, 65, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#taskInput:focus {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: 
+        0 0 10px var(--neon-cyan),
+        inset 0 0 10px rgba(0, 255, 255, 0.1);
+    text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+/* Botón principal - Agregar tarea */
+button[onclick="addTask()"] {
+    padding: 20px 35px;
+    background: var(--dark-bg);
+    border: 2px solid var(--neon-pink);
+    color: var(--neon-pink);
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    margin-bottom: 30px;
+}
+
+button[onclick="addTask()"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 0, 128, 0.4), 
+        rgba(0, 255, 255, 0.4),
+        transparent);
+    transition: left 0.6s ease;
+    animation: standbyGlow 3s ease-in-out infinite;
+}
+
+button[onclick="addTask()"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--neon-cyan), 
+        transparent);
+    transform: translateY(-50%);
+    opacity: 0.6;
+}
+
+@keyframes standbyGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+button[onclick="addTask()"]:hover {
+    color: var(--dark-bg);
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
+    border-color: var(--neon-cyan);
+    box-shadow: 
+        0 0 20px var(--neon-pink),
+        0 0 40px var(--neon-cyan),
+        0 0 80px var(--neon-pink),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    text-shadow: none;
+    transform: translateY(-2px);
+}
+
+button[onclick="addTask()"]:hover::before {
+    left: 100%;
+}
+
+button[onclick="addTask()"]:hover::after {
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.8), 
+        transparent);
+}
+
+/* Subtítulo */
+h3 {
+    color: var(--neon-green);
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 40px 0 30px 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 
+        0 0 5px var(--neon-green),
+        0 0 10px var(--neon-green);
+}
+
+/* Lista de tareas estilo terminal */
+#taskList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#taskList li {
+    background: var(--dark-bg);
+    border: 1px solid var(--neon-green);
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    transition: all 0.4s ease;
+    font-family: 'Rajdhani', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: taskMaterialize 0.6s ease;
+    font-size: 1.1rem;
+    font-weight: 500;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Indicador lateral animado */
+#taskList li::before {
+    content: '>';
+    position: absolute;
+    left: 5px;
+    top: 22px;
+    color: var(--neon-green);
+    font-weight: bold;
+    animation: prompt 2s ease-in-out infinite;
+}
+
+@keyframes prompt {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+#taskList li:hover {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: 
+        0 0 15px var(--neon-cyan),
+        inset 0 0 15px rgba(0, 255, 255, 0.1);
+    transform: translateX(10px);
+}
+
+#taskList li:hover::before {
+    color: var(--neon-cyan);
+    animation: none;
+    opacity: 1;
+}
+
+/* Texto de la tarea */
+#taskList li {
+    padding-left: 35px;
+}
+
+/* Tareas completadas - detectar por text-decoration */
+#taskList li[style*="line-through"] {
+    border-color: var(--terminal-green) !important;
+    color: var(--terminal-green) !important;
+    opacity: 0.7;
+}
+
+#taskList li[style*="line-through"]::before {
+    content: '✓' !important;
+    color: var(--terminal-green) !important;
+    animation: none !important;
+}
+
+/* Botones de acción - adaptados al JS original */
+#taskList button {
+    padding: 8px 16px;
+    border: 1px solid;
+    background: var(--dark-bg);
+    font-family: 'Orbitron', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Botón marcar/desmarcar */
+.mark-completed {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+}
+
+.mark-completed:hover {
+    background: var(--neon-green);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px var(--neon-green);
+}
+
+/* Para tareas completadas, cambiar estilo del botón "Desmarcar" */
+#taskList li[style*="line-through"] .mark-completed {
+    border-color: var(--neon-orange);
+    color: var(--neon-orange);
+}
+
+#taskList li[style*="line-through"] .mark-completed:hover {
+    background: var(--neon-orange);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px var(--neon-orange);
+}
+
+/* Botón eliminar - aplica a todos los botones que no son mark-completed */
+#taskList button:not(.mark-completed) {
+    border-color: var(--warning-red);
+    color: var(--warning-red);
+}
+
+#taskList button:not(.mark-completed):hover {
+    background: var(--warning-red);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px var(--warning-red);
+}
+
+/* Efecto de glitch en botones */
+#taskList button:active,
+button[onclick="addTask()"]:active {
+    animation: buttonGlitch 0.3s;
+}
+
+@keyframes buttonGlitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* Mensajes de error */
+#Error {
+    background: rgba(255, 7, 58, 0.1);
+    border: 1px solid var(--warning-red);
+    color: var(--warning-red);
+    padding: 15px 20px;
+    margin-top: 20px;
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    animation: errorAlert 0.5s ease;
+    display: none;
+}
+
+#Error:not(:empty) {
+    display: block;
+}
+
+#Error::before {
+    content: '⚠ SYSTEM ERROR: ';
+    color: var(--warning-red);
+    font-weight: bold;
+}
+
+@keyframes errorAlert {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Animación de entrada para tareas */
+@keyframes taskMaterialize {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+    border: 1px solid var(--grid-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--neon-pink), var(--neon-cyan));
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--neon-cyan), var(--neon-green));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+        background-size: 20px 20px;
+    }
+    
+    h2 {
+        font-size: 2.5rem;
+        letter-spacing: 4px;
+        margin-bottom: 30px;
+    }
+    
+    h2::after {
+        width: 200px;
+    }
+    
+    #taskInput {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+        padding: 18px 20px;
+        font-size: 1rem;
+    }
+    
+    button[onclick="addTask()"] {
+        width: 100%;
+        padding: 18px 20px;
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    #taskList li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 18px 20px 18px 35px;
+    }
+    
+    #taskList li::before {
+        top: 20px;
+    }
+    
+    #taskList button {
+        margin-left: 0;
+        margin-top: 5px;
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+    
+    h2::after {
+        width: 150px;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+    
+    #taskList li {
+        font-size: 1rem;
+        padding: 15px 18px;
+    }
+    
+    #taskList button {
+        padding: 6px 12px;
+        font-size: 0.7rem;
+        min-width: 100px;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}
